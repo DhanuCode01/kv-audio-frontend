@@ -10,7 +10,7 @@ export default function ProductCard(props){
         <div>
             <img src={props.imgURL}/>
             <span>{props.name}</span>
-            <span>LKR.{props.price}</span>
+            <span>LKR. {props.price}</span>
             <h1>Product Card</h1>
         </div>
     )
