@@ -1,10 +1,9 @@
-import './App.css';
 import { FaChartBar } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { MdOutlineAudiotrack } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa6";
 
-function App() {
+function AdminPage() {
   return (
  
       <div className='w-full h-screen flex '>
@@ -40,4 +39,4 @@ function App() {
   );
 }
 
-export default App;
+export default AdminPage;

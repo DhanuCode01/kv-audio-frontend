@@ -4,10 +4,12 @@ import './index.css'
 import App from './App.jsx'
 import Position from './2nd day/Position.jsx'
 import Alingment from './2nd day/Alingment.jsx'
+import AdminPage from './2nd day/AdminPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Alingment/>
+    <AdminPage/>
+
     
   </StrictMode>,
 )
