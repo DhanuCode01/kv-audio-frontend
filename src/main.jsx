@@ -8,7 +8,7 @@ import AdminPage from './2nd day/AdminPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AdminPage/>
+    <App/>
 
     
   </StrictMode>,
