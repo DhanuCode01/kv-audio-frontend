@@ -2,6 +2,7 @@ import { FaChartBar } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { MdOutlineAudiotrack } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa6";
+import { Route,Routes,Link } from "react-router-dom";
 
 function AdminPage() {
   return (
@@ -13,21 +14,24 @@ function AdminPage() {
                             <FaChartBar/>
                               Dashboad
                     </button>
-                    <button className='w-full h-[40px] text-zinc-950 text-[25px] font-bold flex justify-center items-center'>
+                    <Link to="/admin/bookigs" className='w-full h-[40px] text-zinc-950 text-[25px] font-bold flex justify-center items-center'>
                               <FaRegBookmark />
                               Booking
-                    </button>
-                    <button className='w-full h-[40px] text-zinc-950 text-[25px] font-bold flex justify-center items-center'>
+                    </Link>
+                    <Link to="/admin/items" className='w-full h-[40px] text-zinc-950 text-[25px] font-bold flex justify-center items-center'>
                               <MdOutlineAudiotrack/>
                               Items
-                    </button>
+                    </Link>
                     <button className='w-full h-[40px] text-zinc-950 text-[25px] font-bold flex justify-center items-center'>
                               <FaRegUser/>
                               users
                     </button>
               </div>
-              <div className='w-full bg-blue-400'>
-
+              <div className='w-[calc(100vw-300px)] bg-blue-400'>
+                  <Routes path="/*">
+                    <Route path="/bookigs" element={<h1>Booking</h1>}></Route>
+                    <Route path="/*" element={<h1>item</h1>}></Route>
+                  </Routes>
               </div>
         
       </div>
