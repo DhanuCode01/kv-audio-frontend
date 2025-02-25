@@ -26,6 +26,8 @@ export default function LoginPage(){
 
             const user=res.data.user;
 
+            localStorage.setItem("token",res.data.token)    /* save user token in localStorage */
+
             if(user.type === "admin"){
                 navigate("/admin/");
             }else{
