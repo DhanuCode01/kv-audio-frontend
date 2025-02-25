@@ -3,13 +3,16 @@ import { FaRegBookmark } from "react-icons/fa";
 import { MdOutlineAudiotrack } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa6";
 import { Route,Routes,Link } from "react-router-dom";
+import AdminItemPage from "./AdminItemPage";
+import AddProductPage from "./AddItemPage";
+import AddItemPage from "./AddItemPage";
 
 function AdminPage() {
   return (
  
       <div className='w-full h-screen flex '>
 
-              <div className='w-[300px] h-full bg-blue-300'>
+              <div className='w-[200px] h-full bg-blue-300'>
                     <button className='w-full h-[40px] text-zinc-950 text-[25px] font-bold flex justify-center items-center'>
                             <FaChartBar/>
                               Dashboad
@@ -30,7 +33,8 @@ function AdminPage() {
               <div className='w-[calc(100vw-300px)] bg-blue-400'>
                   <Routes path="/*">
                     <Route path="/bookigs" element={<h1>Booking</h1>}></Route>
-                    <Route path="/*" element={<h1>item</h1>}></Route>
+                    <Route path="/items" element={<AdminItemPage/>}></Route>
+                    <Route path="/items/add" element={<AddItemPage/>}></Route>
                   </Routes>
               </div>
         
