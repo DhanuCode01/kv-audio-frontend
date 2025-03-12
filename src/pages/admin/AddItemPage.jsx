@@ -71,7 +71,7 @@ export default  function AddItemPage() {
                                     <option key={"light"}>Light</option>
                               </select>
                               <input onChange={(e)=>{setProductDimentions(e.target.value)}} values={productDimentions} type="text" placeholder="product Dimentions"/>
-                              <input onChange={(e)=>{setProductDiscription(e.target.value)}} values={productDiscription} type="text" placeholder="product Discription"/>
+                              <textarea onChange={(e)=>{setProductDiscription(e.target.value)}} values={productDiscription} type="text" placeholder="product Discription"/>
                               
                               <button onClick={handleAddItem}>Add</button>      {/* add button */}
                               <button onClick={()=>{navigate("/admin/items")}}>cancel</button>     {/* navigate to click navigate button */}

@@ -6,6 +6,7 @@ import { Route,Routes,Link } from "react-router-dom";
 import AdminItemPage from "./AdminItemPage";
 import AddProductPage from "./AddItemPage";
 import AddItemPage from "./AddItemPage";
+import UpdateItem from "./UpdateItemPage";
 
 function AdminPage() {
   return (
@@ -35,6 +36,7 @@ function AdminPage() {
                     <Route path="/bookigs" element={<h1>Booking</h1>}></Route>
                     <Route path="/items" element={<AdminItemPage/>}></Route>
                     <Route path="/items/add" element={<AddItemPage/>}></Route>
+                    <Route path="/items/edit" element={<UpdateItem/>}></Route>
                   </Routes>
               </div>
         

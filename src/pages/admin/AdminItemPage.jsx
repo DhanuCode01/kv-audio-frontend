@@ -1,15 +1,17 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { CiCirclePlus } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const SampleArray = [                       //Sample Array (sample Array used to "If you want to build a front end without a backend")
+/* const SampleArray = [
   {
     key: "P001",
     name: "Cricket Bat",
     price: "7500",
     category: "Sports Equipment",
     dimension: "85cm x 10cm x 5cm",
-    discription: "High-quality English willow cricket bat.",
+    description: "High-quality English willow cricket bat.",
     availability: true,
     Image: ["https://example.com/bat1.jpg"]
   },
@@ -19,102 +21,87 @@ const SampleArray = [                       //Sample Array (sample Array used to
     price: "1200",
     category: "Sports Equipment",
     dimension: "7cm diameter",
-    discription: "Leather ball suitable for professional matches.",
+    description: "Leather ball suitable for professional matches.",
     availability: true,
     Image: ["https://example.com/ball1.jpg"]
   },
-  {
-    key: "P003",
-    name: "Wicket Keeping Gloves",
-    price: "3500",
-    category: "Cricket Accessories",
-    dimension: "Standard Size",
-    discription: "Premium quality wicket-keeping gloves with extra grip.",
-    availability: false,
-    Image: ["https://example.com/gloves1.jpg"]
-  },
-  {
-    key: "P004",
-    name: "Cricket Helmet",
-    price: "5400",
-    category: "Cricket Accessories",
-    dimension: "Adjustable Size",
-    discription: "Protective helmet with grill for face protection.",
-    availability: true,
-    Image: ["https://example.com/helmet1.jpg"]
-  },
-  {
-    key: "P005",
-    name: "Cricket Pads",
-    price: "4800",
-    category: "Cricket Accessories",
-    dimension: "Standard Size",
-    discription: "Lightweight yet strong leg guards for batters.",
-    availability: true,
-    Image: ["https://example.com/pads1.jpg"]
-  }
 ];
-
-
-
-
-
-
+ */
 export default function AdminItemPage() {
+  const [items, setItems] = useState([]);      // const [items, setItems] = useState(SampleArray);    //When using a sample array
+  const[itemLoaded,setitemLoaded]=useState(false);
+  const navigate =useNavigate();                  //navigate to you wont location 
+  
 
+  useEffect(() => {
+    if(!itemLoaded){
+      const token = localStorage.getItem("token");
+      axios.get("http://localhost:3000/api/product", { headers: { Authorization: `Bearer ${token}` } })
+        .then((res) => {
+          setItems(res.data);
+          setitemLoaded(true)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    
+  }, [itemLoaded]);//first time and "itemLoaded" changed time update it
 
-  const [items,setItems]=useState(SampleArray);                   //create useState to set items (started value  "SampleArray") 
+  function handleDelete(key){     /* delete function */
+      setItems(items.filter((item)=>item.key !==key));
+      const token=localStorage.getItem("token");        //Stored token loaded
+      axios.delete(`http://localhost:3000/api/product/${key}`,{headers:{Authorization:`Bearer ${token}`},
+      }).then((res)=>{
+        console.log(res);
+        toast.success(res.data.message);
+        setitemLoaded(false);
 
+      }).catch((err)=>{
+        //console.log(res)
+        toast.error("ERROR")
+      })
+
+  }
 
   return (
-    <div className="h-full w-full bg-blue-400 relative">
-                <table>
-                        <thead>
-                                <th>key</th>
-                                <th>name</th>
-                                <th>price</th>
-                                <th>category</th>
-                                <th>dimension</th>
-                                <th>availability</th>
-                        </thead>
-                        <tbody>
-
-
-                                {
-                                      items.map((Product)=>{              //Map the attribute named items.
-
-                                         console.log(Product)
-
-                                        return(                          //Return the values ​​that should be printed.
-                                            <tr key={Product.key}>                          {/* unique values */}                 {/* If there is no unique value     ,    items.map((Product,index)=>   ,  Changed to and repalse   key={index}*/}
-                                                <td>{Product.key}</td>
-                                                <td>{Product.name}</td>
-                                                <td>{Product.price}</td>
-                                                <td>{Product.category}</td>
-                                                <td>{Product.dimension}</td>
-                                                <td>{Product.availability}</td>
-
-                                            </tr>
-
-                                             /*  <tr>
-                                                  <td>P005</td>
-                                                  <td>Cricket Pads</td>
-                                                  <td>4800</td>
-                                                  <td>Cricket</td>
-                                                  <td>Adjustable Size</td>
-                                                  <td>true</td>
-                                             </tr> */
-                                            )
-
-                                      })
-                                }
-                              
-                        </tbody>
-                </table>
-                <Link to="/admin/items/add">                                                                                        {/* add new item link */}
-                    <CiCirclePlus className="text-[70px] absolute bottom-2 right-2 hover:text-red-600 cursor-pointer  "/>
-                </Link>
+    <div className="h-full w-full bg-blue-50 p-6  justify-center flex">
+      {!itemLoaded && <div className="border-4 my-4 border-b-green-600 rounded-full animate-spin bg-0 w-[100px] h-[100px]"></div> }{/* If items are not loaded  */}
+      {itemLoaded && <div className="max-w-5xl mx-auto bg-white shadow-md rounded-lg p-4">  {/*  If items are loaded */}
+        <h1 className="text-2xl font-bold text-center mb-4">Admin Items</h1>
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-blue-500 text-white">
+              <th className="p-2 border">Key</th>
+              <th className="p-2 border">Name</th>
+              <th className="p-2 border">Price</th>
+              <th className="p-2 border">Category</th>
+              <th className="p-2 border">Dimension</th>
+              <th className="p-2 border">Availability</th>
+              <th className="p-2 border">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((product) => (
+              <tr key={product.key} className="odd:bg-gray-100 even:bg-gray-200">
+                <td className="p-2 border text-center">{product.key}</td>
+                <td className="p-2 border">{product.name}</td>
+                <td className="p-2 border text-center">{product.price}</td>
+                <td className="p-2 border text-center">{product.category}</td>
+                <td className="p-2 border text-center">{product.dimension}</td>
+                <td className="p-2 border text-center">{product.availability ? "Yes" : "No"}</td>
+                <td className="p-2 border text-center flex justify-center gap-2">
+                  <button  onClick={()=>{navigate("/admin/items/edit",{state:product})}}className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-700">Edit</button>
+                  <button  onClick={()=>handleDelete(product.key)} className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>}
+      <Link to="/admin/items/add" className="fixed bottom-4 right-4">
+        <CiCirclePlus className="text-blue-600 text-6xl hover:text-red-600 cursor-pointer" />
+      </Link>
     </div>
-  )
+  );
 }
-
