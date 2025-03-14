@@ -15,6 +15,9 @@ export default  function AddItemPage() {
           const navigate =useNavigate();                  //navigate to you wont location eg:="/admin/item"
 
 
+          const backendurl=import.meta.env.VITE_BACKEND_URL                // import env
+
+
 
                 async function handleAddItem(){            /*  add button onclick function */
                               
@@ -26,7 +29,7 @@ export default  function AddItemPage() {
                                        if(token){                                  //2nd Method check autherization
 
                                               try{
-                                                      const result = await axios.post("http://localhost:3000/api/product/add",{        //link
+                                                      const result = await axios.post(`${backendurl}/api/product/add`,{        //link     //.env useing backtick
                                                             
                                                               key:productKey,                         
                                                               name:productName,

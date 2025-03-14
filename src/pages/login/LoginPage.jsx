@@ -10,11 +10,16 @@ export default function LoginPage(){
     const [password,setPassword]=useState("");
     const navigate = useNavigate();
 
+    
+
     function handleOnSubmit(e){
            e.preventDefault();
            console.log(email,password)
 
-           axios.post("http://localhost:3000/api/user/user",
+           const backendurl=import.meta.env.VITE_BACKEND_URL                // import env
+
+           axios.post(backendurl+"/api/user/user",                          //.env using normal way
+             
             {
                 email:email,
                 password:password

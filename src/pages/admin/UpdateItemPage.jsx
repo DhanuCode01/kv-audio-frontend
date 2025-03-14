@@ -15,6 +15,7 @@ export default  function UpdateItem() {
           const [productDimentions, setProductDimentions]=useState(location.state.dimension);
           const [productDiscription, setProductDiscription]=useState(location.state.discription);
 
+
          
 
           const navigate =useNavigate();                  //navigate to you wont location 
@@ -31,7 +32,7 @@ export default  function UpdateItem() {
                                             if(token){                                  //2nd Method check autherization
 
                                               try{
-                                                      const result = await axios.put("http://localhost:3000/api/product/"+productKey,{        //link
+                                                      const result = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/product/`+productKey,{        //link      //.env useing backtick direct way
                                                             
                                                                                      
                                                               name:productName,

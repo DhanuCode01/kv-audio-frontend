@@ -33,10 +33,12 @@ export default function AdminItemPage() {
   const navigate =useNavigate();                  //navigate to you wont location 
   
 
+  const backendurl=import.meta.env.VITE_BACKEND_URL                // import env
+
   useEffect(() => {
     if(!itemLoaded){
       const token = localStorage.getItem("token");
-      axios.get("http://localhost:3000/api/product", { headers: { Authorization: `Bearer ${token}` } })
+      axios.get(backendurl+"/api/product", { headers: { Authorization: `Bearer ${token}` } })         //.env useing normal way
         .then((res) => {
           setItems(res.data);
           setitemLoaded(true)
@@ -51,7 +53,7 @@ export default function AdminItemPage() {
   function handleDelete(key){     /* delete function */
       setItems(items.filter((item)=>item.key !==key));
       const token=localStorage.getItem("token");        //Stored token loaded
-      axios.delete(`http://localhost:3000/api/product/${key}`,{headers:{Authorization:`Bearer ${token}`},
+      axios.delete(`${backendurl}/api/product/${key}`,{headers:{Authorization:`Bearer ${token}`},       //.env using backtick
       }).then((res)=>{
         console.log(res);
         toast.success(res.data.message);
