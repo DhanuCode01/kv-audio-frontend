@@ -6,7 +6,7 @@ export default function ProductCard({ item }) {
         src={item.Image[0] || "https://via.placeholder.com/150"}
         alt={item.name}
       />
-      <div className="p-4 h-full bg-amber-200">
+      <div className="p-4 h-full bg-primary">
         <h2 className="text-lg font-bold text-gray-800">{item.name}</h2>
         <p className="text-sm text-gray-600">{item.discription}</p>
         <p className="text-md font-semibold text-gray-700 mt-2">${item.price}</p>
