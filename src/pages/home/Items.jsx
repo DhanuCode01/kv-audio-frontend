@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react"
 import toast from "react-hot-toast";
-import ProductCard from "../../components/ProductCard";
+import ProductCard from "../../components/ProductCard.jsx";
 
 export default function Items(){
     const [State,setState]=useState("loading");//loading,success,error

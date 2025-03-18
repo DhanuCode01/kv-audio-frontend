@@ -3,10 +3,10 @@ import { FaRegBookmark } from "react-icons/fa";
 import { MdOutlineAudiotrack } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa6";
 import { Route,Routes,Link } from "react-router-dom";
-import AdminItemPage from "./AdminItemPage";
-import AddProductPage from "./AddItemPage";
-import AddItemPage from "./AddItemPage";
-import UpdateItem from "./UpdateItemPage";
+import AdminItemPage from "./AdminItemPage.jsx";
+import AddProductPage from "./AddItemPage.jsx";
+import AddItemPage from "./AddItemPage.jsx";
+import UpdateItem from "./UpdateItemPage.jsx";
 
 function AdminPage() {
   return (

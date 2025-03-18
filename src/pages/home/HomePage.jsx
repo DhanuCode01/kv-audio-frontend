@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom"
-import Header from "../../components/header"
-import Home from "./Home"
-import Contact from "./Contact"
-import Gallery from "./Gallery"
-import Items from "./Items"
-import Error from "./Error"
+import Header from "../../components/header.jsx"
+import Home from "./Home.jsx"
+import Contact from "./Contact.jsx"
+import Gallery from "./Gallery.jsx"
+import Items from "./Items.jsx"
+import Error from "./Error.jsx"
 
 
 export default function HomePage(){
