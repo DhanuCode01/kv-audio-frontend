@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import Header from "../../components/header.jsx"
+import Header from "../../components/Header.jsx"
 import Home from "./Home.jsx"
 import Contact from "./Contact.jsx"
 import Gallery from "./Gallery.jsx"
