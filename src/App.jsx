@@ -1,12 +1,12 @@
 import './App.css';
-import AdminPage from './pages/admin/AdminPage';
+import AdminPage from './pages/admin/AdminPage.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/home/homePage';
-import Testing from './components/Testing';
-import LoginPage from './pages/login/LoginPage';
+import HomePage from './pages/home/homePage.jsx';
+import Testing from './components/Testing.jsx';
+import LoginPage from './pages/login/LoginPage.jsx';
 import  { Toaster } from 'react-hot-toast';
-import RegisterPage from './pages/register/RegisterPage';
-import TestingSuperBase from './components/TestingSuperBase';
+import RegisterPage from './pages/register/RegisterPage.jsx';
+import TestingSuperBase from './components/TestingSuperBase.jsx';
 
 
 function App() {
