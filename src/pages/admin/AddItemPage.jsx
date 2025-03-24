@@ -30,6 +30,11 @@ export default  function AddItemPage() {
                                 console.log(productImages[i])               //print console log (image one by one)
                                 const promise=MediaUpload(productImages[i])      //get promise each file
                                 promises.push(promise)                      //push promise to promises array
+
+                                /* if(i==5){
+                                  toast.error("You Can Only Upload 5  Images at a Time")
+                                  break;
+                                } */
                               }
                               
 

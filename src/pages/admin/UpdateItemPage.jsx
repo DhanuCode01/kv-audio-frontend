@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react"
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import MediaUpload from "../../utils/MediaUpload";
 
 export default  function UpdateItem() {
 
@@ -14,6 +15,9 @@ export default  function UpdateItem() {
           const [productCategory, setProductCategory]=useState(location.state.category);
           const [productDimentions, setProductDimentions]=useState(location.state.dimension);
           const [productDiscription, setProductDiscription]=useState(location.state.discription);
+          const [productImages,setproductImages]=useState([])//images usestate Array
+          
+
 
 
          
@@ -23,6 +27,21 @@ export default  function UpdateItem() {
 
 
                 async function handleUpdateItem(){            /*  add button onclick function */
+                      let updatingImages=location.state.Image;//if you have an image load it
+                      
+
+                      if (productImages.length>0){        //if check user add new image 
+                        const promises=[];       //create promises array(used to handle multiple promises)
+
+                        for(let i=0; i<productImages.length; i++){    //read to product image one by one
+                                    console.log(productImages[i])               //print console log (image one by one)
+                                    const promise=MediaUpload(productImages[i])      //get promise each file
+                                    promises.push(promise)                      //push promise to promises array
+                            }
+
+                            updatingImages=await Promise.all(promises);//update images
+                                                      
+                          }
                               
                               const token=localStorage.getItem("token");  /*get token*/
                                             
@@ -39,7 +58,8 @@ export default  function UpdateItem() {
                                                               price:productPrice,             //Data required to pass
                                                               category:productCategory,
                                                               dimension:productDimentions,
-                                                              discription:productDiscription 
+                                                              discription:productDiscription,
+                                                              Image:updatingImages,
                                                       },{
                                                               headers:{
                                                                 Authorization:"Bearer " +token            //pass the bsck end token with data
@@ -80,7 +100,8 @@ export default  function UpdateItem() {
                               </select>
                               <input onChange={(e)=>{setProductDimentions(e.target.value)}} value={productDimentions} type="text" placeholder="product Dimentions"/>
                               <textarea onChange={(e)=>{setProductDiscription(e.target.value)}} value={productDiscription} type="text" placeholder="product Discription"/>
-                              
+                              <input  type="file"  multiple onChange={(e)=>{setproductImages(e.target.files)}} />
+
                               <button onClick={handleUpdateItem}>Update Item</button>      {/* update button */}
                               <button onClick={()=>{navigate("/admin/items")}}>cancel</button>     {/* navigate to click navigate button */}
 
