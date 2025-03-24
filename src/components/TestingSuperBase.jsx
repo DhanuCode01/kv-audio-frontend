@@ -1,5 +1,5 @@
 import { useState } from "react"
-import mediaUpload from "../utils/MediaUpload.jsx";
+import MediaUpload from "../utils/MediaUpload.jsx";
 
 export default function TestingSuperBase(){
 
@@ -8,7 +8,7 @@ export default function TestingSuperBase(){
     function uploadFile(){
         console.log(file);
         
-        mediaUpload(file).then((publicURL)=>{
+        MediaUpload(file).then((publicURL)=>{
             console.log(publicURL)
         })
     }

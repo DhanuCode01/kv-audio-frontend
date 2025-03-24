@@ -6,7 +6,7 @@ const superbase_URL=`https://ycsreltdtdkdnrtajwdr.supabase.co`   //your superbas
 
 const superbase=createClient(superbase_URL,anon_key)     //create connection to superBase
 
-export default function mediaUpload(file){                  //create function to upload file to database (First you upload the file in the function )
+export default function MediaUpload(file){                  //create function to upload file to database (First you upload the file in the function )
 
         return new Promise((resolve,reject)=>{       //use promisees reuserble function
 

@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react"
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import MediaUpload from "../../utils/MediaUpload.jsx";
+
 
 export default  function AddItemPage() {
 
@@ -11,6 +13,7 @@ export default  function AddItemPage() {
           const [productCategory, setProductCategory]=useState("audio");
           const [productDimentions, setProductDimentions]=useState("");
           const [productDiscription, setProductDiscription]=useState("");
+          const [productImages,setproductImages]=useState([])//images usestate Array
 
           const navigate =useNavigate();                  //navigate to you wont location eg:="/admin/item"
 
@@ -20,6 +23,17 @@ export default  function AddItemPage() {
 
 
                 async function handleAddItem(){            /*  add button onclick function */
+                               const promises=[]       //create promises array(used to handle multiple promises)
+                               
+
+                              for(let i=0; i<productImages.length; i++){    //read to product image one by one
+                                console.log(productImages[i])               //print console log (image one by one)
+                                const promise=MediaUpload(productImages[i])      //get promise each file
+                                promises.push(promise)                      //push promise to promises array
+                              }
+                              
+
+                              
                               
                               const token=localStorage.getItem("token");  /*get token*/
                                             
@@ -29,6 +43,17 @@ export default  function AddItemPage() {
                                        if(token){                                  //2nd Method check autherization
 
                                               try{
+
+                                                /* Promise.all(promises).then((result)=>{                   //{1st way of execute promises array}        //use try catch
+                                                  console.log(result)                                    //execute all promises in one time(Promise.all = In build function)
+                                                }).catch((err)=>{
+                                                  toast.error(err)
+                                                }) */
+
+                                                
+                                                const imageURL=await Promise.all(promises) //{2st way of execute promises array}      //useing async await
+
+
                                                       const result = await axios.post(`${backendurl}/api/product/add`,{        //link     //.env useing backtick
                                                             
                                                               key:productKey,                         
@@ -36,7 +61,8 @@ export default  function AddItemPage() {
                                                               price:productPrice,             //Data required to pass
                                                               category:productCategory,
                                                               dimension:productDimentions,
-                                                              discription:productDiscription 
+                                                              discription:productDiscription,
+                                                              Image:imageURL
                                                       },{
                                                               headers:{
                                                                 Authorization:"Bearer " +token            //pass the bsck end token with data
@@ -75,6 +101,7 @@ export default  function AddItemPage() {
                               </select>
                               <input onChange={(e)=>{setProductDimentions(e.target.value)}} values={productDimentions} type="text" placeholder="product Dimentions"/>
                               <textarea onChange={(e)=>{setProductDiscription(e.target.value)}} values={productDiscription} type="text" placeholder="product Discription"/>
+                              <input  type="file"  multiple onChange={(e)=>{setproductImages(e.target.files)}} />
                               
                               <button onClick={handleAddItem}>Add</button>      {/* add button */}
                               <button onClick={()=>{navigate("/admin/items")}}>cancel</button>     {/* navigate to click navigate button */}
