@@ -5,6 +5,7 @@ import Contact from "./Contact.jsx"
 import Gallery from "./Gallery.jsx"
 import Items from "./Items.jsx"
 import Error from "./Error.jsx"
+import ProductOverview from "./ProductOverview.jsx"
 
 
 export default function HomePage(){
@@ -16,6 +17,7 @@ export default function HomePage(){
                     <Route path="/contact"  element={<Contact/>}></Route>
                     <Route path="/gallery"  element={<Gallery/>}></Route>
                     <Route path="/item"  element={<Items/>}></Route>
+                    <Route path="/product/:key" element={<ProductOverview/>}></Route>
                     <Route path="/"  element={<Home/>}></Route>
                     <Route path="/*" element={<Error/>}></Route>
                </Routes>
