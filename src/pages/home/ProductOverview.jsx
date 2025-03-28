@@ -40,6 +40,9 @@ export default function ProductOverview(){
                                 <h2 className="text-l font-bold text-black">{product.discription}</h2>
                                 <h2 className="text-2xl font-bold text-black">{product.category}</h2>
                                 <h2 className="text-2xl font-bold text-green-300">{product.price}</h2>
+                                <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">
+                                                 Add to Cart
+                                </button>
                         </div>
                     </div>
                 }
