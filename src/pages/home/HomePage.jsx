@@ -6,6 +6,7 @@ import Gallery from "./Gallery.jsx"
 import Items from "./Items.jsx"
 import Error from "./Error.jsx"
 import ProductOverview from "./ProductOverview.jsx"
+import BookingPage from "./BookingPage.jsx"
 
 
 export default function HomePage(){
@@ -18,6 +19,7 @@ export default function HomePage(){
                     <Route path="/gallery"  element={<Gallery/>}></Route>
                     <Route path="/item"  element={<Items/>}></Route>
                     <Route path="/product/:key" element={<ProductOverview/>}></Route>
+                    <Route path="/booking" element={<BookingPage/>} />
                     <Route path="/"  element={<Home/>}></Route>
                     <Route path="/*" element={<Error/>}></Route>
                </Routes>

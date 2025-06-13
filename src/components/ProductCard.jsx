@@ -21,9 +21,7 @@ export default function ProductCard({ item }) {
           <Link to={"/product/"+item.key}className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">{/*  When you click View Details, the item key is added to the end of /product/ and linked. */}
             View Details
           </Link>
-          <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">
-            Add to Cart
-          </button>
+          
         </div>
       </div>
     </div>

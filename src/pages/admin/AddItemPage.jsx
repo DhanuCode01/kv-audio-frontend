@@ -57,7 +57,7 @@ export default  function AddItemPage() {
 
                                                 
                                                 const imageURL=await Promise.all(promises) //{2st way of execute promises array}      //useing async await
-
+                                                console.log(imageURL)
 
                                                       const result = await axios.post(`${backendurl}/api/product/add`,{        //link     //.env useing backtick
                                                             
@@ -74,12 +74,14 @@ export default  function AddItemPage() {
                                                               }
                                                       })
                                                       toast.success(result.data.Message);
+                                                      toast.success("Success✔️")
 
                                                       navigate ("/admin/items")                         //After success, navigate to the admin/items page.
 
 
                                                       
                                                 }catch(err){
+                                                  console.log(err);
                                                   toast.error(err.response.data.error);
                                                 }
 

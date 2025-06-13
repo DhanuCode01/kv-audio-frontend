@@ -8,6 +8,7 @@ import  { Toaster } from 'react-hot-toast';
 import RegisterPage from './pages/register/RegisterPage.jsx';
 import TestingSuperBase from './components/TestingSuperBase.jsx';
 
+
 //
 function App() {
   return (

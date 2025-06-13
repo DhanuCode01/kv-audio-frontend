@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { GiShoppingCart } from "react-icons/gi";
 
 export default function Header(){
     return(
@@ -8,6 +9,7 @@ export default function Header(){
             <Link to="/contact" className="text-[25px] font-bold m-1">contact</Link>
             <Link to="/gallery" className="text-[25px] font-bold m-1">Gallery</Link>
             <Link to="/item" className="text-[25px] font-bold m-1">Item</Link>
+            <Link to="/booking"><GiShoppingCart className="text-5xl hover:text-accent  absolute right-7 top-7 "/></Link>
             
         </header>
         

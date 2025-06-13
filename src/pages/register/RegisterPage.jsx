@@ -51,8 +51,8 @@ export default function RegisterPage() {
                     <input type="text" placeholder="Address" className="mt-6 w-[300px] bg-transparent border-b-2 border-white text-white text-xl outline-none" value={address} onChange={(e) => setAddress(e.target.value)} />
                     <input type="text" placeholder="Phone" className="mt-6 w-[300px] bg-transparent border-b-2 border-white text-white text-xl outline-none" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     <select className="mt-6 w-[300px] bg-transparent border-b-2 border-white text-white text-xl outline-none" value={type} onChange={(e) => setType(e.target.value)}>
-                        <option value="coach">customer</option>
-                        <option value="student">admin</option>
+                        <option value="customer">customer</option>
+                        <option value="admin">admin</option>
                         
                         
                     </select>

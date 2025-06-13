@@ -6,7 +6,7 @@ export default function ImageSlider(props){
 
     const [selectedImage,setSelectedImage]=useState(images[0]);//Viewing image states
     return(
-        <dev className="w-full h-full flex flex-col items-center">
+        <div className="w-full h-full flex flex-col items-center">
             <img src={selectedImage} alt="product" className="w-full h-[70%] object-cover"/> 
             <div className="w-full h-[150px] flex justify-center  ">
                 {
@@ -19,6 +19,6 @@ export default function ImageSlider(props){
                 })
                 }
             </div>
-        </dev>
+        </div>
     )
 }

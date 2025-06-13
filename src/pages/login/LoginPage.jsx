@@ -17,6 +17,7 @@ export default function LoginPage(){
            console.log(email,password)
 
            const backendurl=import.meta.env.VITE_BACKEND_URL                // import env
+           console.log(backendurl)
 
            axios.post(backendurl+"/api/user/user",                          //.env using normal way
              

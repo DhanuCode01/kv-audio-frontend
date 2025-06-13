@@ -2,10 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
+import { addToCart, loadCart } from "../../utils/Cart";
+import toast from "react-hot-toast";
 
 export default function ProductOverview(){
     const params =useParams(); //Read and Assign The parameter  //passed
     const key=params.key;
+    
 
     const[loadingStatus,setloadingStatus]=useState("loading");
     const[product,setProduct]=useState({});
@@ -34,14 +37,19 @@ export default function ProductOverview(){
                             <ImageSlider  images={product.Image}/>  
                         </div>
                         <div className="h-full w-[49%] flex flex-col items-center mx-4 ">
+                                <h1 className="text-3xl font-bold text-accent">{product.key}</h1>
                                 <h1 className="text-3xl font-bold text-accent">{product.name}</h1>
                                 <h2 className="text-2xl font-bold text-black">{product.category}</h2>
                                 <h2 className="text-2xl font-bold text-black">{product.dimension}</h2>
                                 <h2 className="text-l font-bold text-black">{product.discription}</h2>
                                 <h2 className="text-2xl font-bold text-black">{product.category}</h2>
                                 <h2 className="text-2xl font-bold text-green-300">{product.price}</h2>
-                                <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">
-                                                 Add to Cart
+                                <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700" 
+                                            onClick={()=>{
+                                                addToCart(product.key,1);
+                                                console.log (loadCart());
+                                                toast.success("Added To Cart👍✔️")}}>
+                                Add to Cart
                                 </button>
                         </div>
                     </div>

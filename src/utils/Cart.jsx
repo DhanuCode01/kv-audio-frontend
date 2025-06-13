@@ -1,6 +1,7 @@
 export function loadCart(){
     let cart =localStorage.getItem("cart");   //"JSON" type data cannot be saved in a localStorage, only String data can be saved.
     if (cart == null){
+        
         cart={
             orderedItems:[],
             days:1,
@@ -11,6 +12,7 @@ export function loadCart(){
         localStorage.setItem("cart",cartString);//save localStorage
         return cart;//return json data
     }
+    
     cart =JSON.parse (cart);   //if cart have the data
     return cart;//return json data
 
@@ -27,28 +29,29 @@ export function loadCart(){
 
 
 
-export function addToCart(key,qty){
-
+export function addToCart(key,quantity){
+    
     const cart =loadCart();                     // get data from "loadCart" Function 
     let found =false;
-    
-
+    console.log(cart.orderedItems)
+ 
     for(let i=0;  i<cart.orderedItems.length;  i++){
 
                     if(cart.orderedItems[i].key == key){
-                        cart.orderedItems[i].qty +=qty;
-                        found==true;
+                        cart.orderedItems[i].quantity +=quantity;
+                        found=true;
                     }
+                }
 
-                    if(!found){
-                        cart.orderedItems.push({key,qty})
-                    }
+        if(!found){
+            cart.orderedItems.push({key,quantity})
+                                              
+        }
 
-        const cartString=JSON.stringify(cart);
-        localStorage.setItem("cart",cartString);
-
-
-    }
+    
+    const cartString=JSON.stringify(cart);
+    localStorage.setItem("cart",cartString);
+    
 
 }
 
